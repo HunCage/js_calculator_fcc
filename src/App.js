@@ -1,23 +1,17 @@
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import Frame from "./components/Frame";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="App h-100">
+			<Header />
+			<div className="container d-flex justify-content-center  align-items-center">
+				<Frame />
+			</div>
+		</div>
+	);
 }
 
 export default App;
