@@ -5,7 +5,6 @@ import Output from "./Output";
 const Frame = ({ handleDisplay }) => {
 	const [operation, setOperation] = useState("0");
 	const [sum, setSum] = useState(0);
-	
 
 	return (
 		<div className="frame grid">

@@ -1,20 +1,9 @@
 import React from "react";
-// import { create, all } from 'mathjs'
-// import React, { useState } from "react";
-// import Button from 'react-bootstrap/Button';
 
-const math = require('mathjs')
+const math = require("mathjs");
 
-const Buttons = ({ operation, setOperation, sum, setSum }) => {
+const Buttons = ({ operation, setOperation, setSum }) => {
 	const handleDisplay = (symbol) => {
-		// setOperation((previous) => previous + symbol);
-		// if (operation[operation.length - 1] === "=") {
-		// 	if (/[1-9.]/.test(symbol)) {
-		// 		setOperation(symbol);
-		// 	} else {
-		// 		setOperation(sum + symbol);
-		// 	}
-		// }
 		setOperation((previous) => {
 			if (
 				/[+*-/]/.test(symbol) &&
@@ -41,14 +30,12 @@ const Buttons = ({ operation, setOperation, sum, setSum }) => {
 				if (previous) {
 					previous = previous + "";
 					let valArr = previous.split(/[+/*-]/g);
-					console.log("valArr " + JSON.stringify(valArr));
 					let lastNumber = valArr[valArr.length - 1];
 					if (
 						!isNaN(lastNumber) &&
 						/[.]/.test(lastNumber) &&
 						symbol === "."
 					) {
-						console.log("symbol = empty ");
 						symbol = "";
 					}
 				}
@@ -65,12 +52,8 @@ const Buttons = ({ operation, setOperation, sum, setSum }) => {
 	};
 
 	const calculate = () => {
-		// setOperation(operation);
-		setSum(math.evaluate(operation));
 		setOperation(math.evaluate(operation));
-		// setOperation(eval(operation));
-		// setSum(eval(operation));
-		// setSum((previous) => previous + "=");
+		setSum((previous) => previous + "=");
 	};
 
 	const reset = () => {
@@ -79,11 +62,15 @@ const Buttons = ({ operation, setOperation, sum, setSum }) => {
 	};
 
 	const resetLastElem = () => {
-		setSum(0);
 		if (operation.length > 0) {
 			setOperation(operation.slice(0, operation.length - 1));
 		} else {
-			setOperation(0)
+			setOperation(0);
+		}
+		if (operation.length > 0) {
+			setSum(operation.slice(0, operation.length - 1));
+		} else {
+			setSum(0);
 		}
 	};
 
@@ -113,17 +100,6 @@ const Buttons = ({ operation, setOperation, sum, setSum }) => {
 					</button>
 				</div>
 
-				{/* <div className="col-3 p-0">
-					<button
-						onClick={() => handleDisplay("%")}
-						type="button"
-						className="btns bg-info text-white"
-						id="percent"
-						value="%"
-					>
-						%
-					</button>
-				</div> */}
 				<div className="col-3 p-0">
 					<button
 						onClick={() => handleDisplay("/")}
@@ -279,17 +255,6 @@ const Buttons = ({ operation, setOperation, sum, setSum }) => {
 			</div>
 
 			<div className="row numRowFive m-0 mt-2">
-				{/* <div className="col-3 p-0">
-					<button
-						onClick={() => handleDisplay("x * x")}
-						type="button"
-						className="btns bg-info text-white"
-						id="power"
-						value="x2"
-					>
-						x<sup>2</sup>
-					</button>
-				</div> */}
 				<div className="col-6 p-0">
 					<button
 						onClick={() => handleDisplay("0")}
