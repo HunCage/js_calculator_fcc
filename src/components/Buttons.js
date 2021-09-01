@@ -1,6 +1,9 @@
 import React from "react";
+import { create, all } from 'mathjs'
 // import React, { useState } from "react";
 // import Button from 'react-bootstrap/Button';
+
+const math = require('mathjs')
 
 const Buttons = ({ operation, setOperation, sum, setSum }) => {
 	const handleDisplay = (symbol) => {
@@ -63,8 +66,8 @@ const Buttons = ({ operation, setOperation, sum, setSum }) => {
 
 	const calculate = () => {
 		// setOperation(operation);
-		setSum(eval(operation));
-		setOperation(eval(operation));
+		setSum(math.evaluate(operation));
+		setOperation(math.evaluate(operation));
 		// setOperation(eval(operation));
 		// setSum(eval(operation));
 		// setSum((previous) => previous + "=");
